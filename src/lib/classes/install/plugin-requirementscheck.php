@@ -17,9 +17,9 @@ class PLUGIN_CLASS_NAME_RequirementsChecks extends Aelia_WC_RequirementsChecks {
 		'WooCommerce' => '2.1',
 		//'Aelia Foundation Classes for WooCommerce' => array(
 		//	'version' => '1.0.10.140819',
-		//	'extra_info' => 'You can get the plugin <a href="http://aelia.co/downloads/wc-aelia-foundation-classes.zip">from our site</a>, free of charge.',
+		//	'extra_info' => 'You can get the plugin <a href="http://bit.ly/WC_AFC_S3">from our site</a>, free of charge.',
 		//	'autoload' => true,
-		//	'url' => 'http://aelia.co/downloads/wc-aelia-foundation-classes.zip',
+		//	'url' => 'http://bit.ly/WC_AFC_S3',
 		//),
 	);
 

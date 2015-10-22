@@ -50,6 +50,9 @@ if(!class_exists('Aelia_WC_RequirementsChecks')) {
 		// @var array A list of all the installed plugins.
 		protected static $_installed_plugins;
 
+		// @var array An array of plugin details. Used for caching.
+		protected static $_plugins_info = array();
+
 		// @var array An array of WordPress plugins (name => version) required by the plugin.
 		protected $required_plugins = array(
 			'WooCommerce' => '2.0.10',
@@ -322,15 +325,20 @@ if(!class_exists('Aelia_WC_RequirementsChecks')) {
 		 * @since 1.5.0.150225
 		 */
 		protected function get_wp_plugin_info($plugin_name) {
-			foreach($this->installed_plugins() as $path => $plugin_info){
-				if(strcasecmp($plugin_info['Name'], $plugin_name) === 0) {
-					$plugin_info['path'] = $path;
-					$plugin_info['active'] = is_plugin_active($path);
-					$plugin_info = array_change_key_case($plugin_info, CASE_LOWER);
-					return $plugin_info;
+			if(empty(self::$_plugins_info[$plugin_name])) {
+				self::$_plugins_info[$plugin_name] = false;
+				foreach($this->installed_plugins() as $path => $plugin_info){
+					if(strcasecmp($plugin_info['Name'], $plugin_name) === 0) {
+						$plugin_info['path'] = $path;
+						$plugin_info['active'] = is_plugin_active($path);
+						$plugin_info = array_change_key_case($plugin_info, CASE_LOWER);
+
+						self::$_plugins_info[$plugin_name] = $plugin_info;
+						break;
+					}
 				}
 			}
-			return false;
+			return self::$_plugins_info[$plugin_name];
 		}
 
 		/**
@@ -448,8 +456,13 @@ if(!class_exists('Aelia_WC_RequirementsChecks')) {
 					float: none;
 				}
 
+				.wc_aelia.message .spinner {
+					display: none;
+				}
+
 				.wc_aelia.message .spinner.visible {
 					display: inline-block;
+					visibility: visible;
 				}
 			</style>
 			<div class="wc_aelia message error fade">
