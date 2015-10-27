@@ -1,6 +1,6 @@
 === PLUGIN_NAME ===
 Requires at least: 3.6
-Tested up to: 4.2
+Tested up to: 4.4
 Stable tag: PLUGIN_VERSION
 Tags: PLUGIN_TAGS
 License: PLUGIN_LICENSE
