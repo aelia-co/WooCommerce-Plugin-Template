@@ -38,7 +38,7 @@ class PLUGIN_CLASS_NAME extends Aelia_Plugin {
 		$settings_controller = new Settings(Settings::SETTINGS_KEY,
 																				self::$text_domain,
 																				$settings_page_renderer);
-		$messages_controller = new Messages();
+		$messages_controller = new Messages(self::$text_domain);
 
 		$class = get_called_class();
 		// Replace $settings_controller with NULL if the plugin doesn't have settings
