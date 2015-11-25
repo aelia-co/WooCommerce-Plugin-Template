@@ -229,7 +229,7 @@
 
 		<!-- Compress files into a release package -->
 		<property name="compress_source_dir" value="${release_temp_dir}" />
-		<property name="compress_includes" value="${plugin_name}/*.php, ${plugin_name}/*.md, ${plugin_name}/src/**" />
+		<property name="compress_includes" value="${plugin_name}/*.php, ${plugin_name}/*.md, ${plugin_name}/*.txt, ${plugin_name}/src/**" />
 		<property name="compress_excludes" value="**/tests/**, */documentation/*.json" />
 
 
