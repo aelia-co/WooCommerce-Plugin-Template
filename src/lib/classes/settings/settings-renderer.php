@@ -137,7 +137,7 @@ class Settings_Renderer extends \Aelia\WC\Settings_Renderer {
 	 * @return string
 	 */
 	protected function page_description() {
-		return __('Page description. Change it in <code>Settings_Renderer::page_description()</code>.' .
+		return __('Page description. Change it in <code>Settings_Renderer::page_description()</code>.',
 							$this->_textdomain);
 	}
 
