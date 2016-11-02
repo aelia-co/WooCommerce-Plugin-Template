@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<phpdox xmlns="http://phpdox.de/config">
+<phpdox xmlns="http://xml.phpdox.net/config">
  <project name="PLUGIN_NAME" source="src/" workdir="../build/api">
   <collector publiconly="false">
    <include mask="*.php" />

@@ -6,14 +6,14 @@
 
 	<property name="plugin_text_domain" value="wc-aelia-eu-vat-assistant" />
 	<target name="build"
-					depends="prepare,composer,lint,phploc,pdepend,phpmd-ci,phpcpd,phpdox,phpunit,phpcb,replace-text-domain,prepare-release"/>
+					depends="prepare,composer,lint,phploc,pdepend,phpmd-ci,phpcpd,phpdox,phpunit,phpcb,prepare-release"/>
 
 	<target name="build-quicktest"
 					depends="prepare,composer,phpunit,prepare-release"/>
 
-	<!-- Build plugin without replacing the text domain with constant string -->
-	<target name="build-no-text-domain-replace"
-					depends="prepare,composer,lint,phploc,pdepend,phpmd-ci,phpcpd,phpdox,phpunit,phpcb,prepare-release"/>
+	<!-- Build plugin replacing the text domain with constant string -->
+	<target name="build-with-text-domain-replace"
+					depends="prepare,composer,lint,phploc,pdepend,phpmd-ci,phpcpd,phpdox,replace-text-domain,phpunit,phpcb,prepare-release"/>
 
  <target name="build-parallel"
 				 depends="prepare,composer,lint,tools-parallel,phpunit,phpcb,prepare-release"/>
