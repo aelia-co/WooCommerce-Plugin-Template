@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "license": "GPL-3.0",
   "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-rename": "^0.1.4",
-    "grunt-string-replace": "^1.2.0"
+    "grunt": ">=0.4.5",
+    "grunt-rename": ">=0.1.4",
+    "grunt-string-replace": ">=1.2.0"
   },
   "repository": {
     "type": "git",
