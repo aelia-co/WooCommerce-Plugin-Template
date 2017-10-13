@@ -30,6 +30,8 @@
     "PLUGIN_CONTACT_URL": "https://github.com/aelia-co/WooCommerce-Plugin-Template/issues",
     "PLUGIN_SETTINGS_KEY": "wc-template-plugin",
     "PLUGIN_FILTER_PREFIX": "wc_template",
+    "PLUGIN_WC_MIN_VERSION": "2.6",
+    "PLUGIN_WC_MAX_VERSION": "3.2",
     "PLUGIN_TAGS": ""
   }
 }
