@@ -5,8 +5,13 @@
 	<property name="wp_unit_plugins_dir" value="${wp_unit_dir}/wordpress/wp-content/plugins/" />
 
 	<property name="plugin_text_domain" value="wc-aelia-eu-vat-assistant" />
+	<!-- Builds the main version of the plugin (usually, the premium one) -->
 	<target name="build"
-					depends="prepare,composer,lint,phploc,pdepend,phpmd-ci,phpcpd,phpdox,phpunit,phpcb,prepare-release"/>
+					depends="prepare,composer,lint,phploc,pdepend,phpmd-ci,phpcpd,phpdox,phpunit,phpcb,remove-premium-features-tags,prepare-release"/>
+
+	<!-- Builds the free version of the plugin, removing premium features -->
+ 	<target name="build-free-version"
+				 depends="remove-premium-features,prepare-free-release"/>
 
 	<target name="build-quicktest"
 					depends="prepare,composer,phpunit,prepare-release"/>
@@ -212,6 +217,14 @@
 		</replaceregexp>
 	</target>
 
+	<!-- Remove all "Premium feature" tags from the code -->
+	<target name="remove-premium-features-tags" description="Remove code related to premium features">
+		<replaceregexp match="\/\/\s*?\{.*?Premium\-Feature\-Start.*?\}|\/\/.*?\{\s*?Premium\-Feature\-End.*?\}"
+									 replace="// Premium feature removed" flags="gi">
+	    <fileset dir="${basedir}/src" includes="**/*.php,**/*.js,**/*.css"/>
+		</replaceregexp>
+	</target>
+
 	<!-- Prepare release files -->
 	<target name="prepare-release" depends="phpunit,composer-prepare-release" description="Produce a release package">
 		<tempfile property="release_temp_dir" suffix=".tmp" deleteonexit="false" />
@@ -230,6 +243,51 @@
 		<!-- Compress files into a release package -->
 		<property name="compress_source_dir" value="${release_temp_dir}" />
 		<property name="compress_includes" value="${plugin_name}/*.php, ${plugin_name}/*.md, ${plugin_name}/*.txt, ${plugin_name}/src/**" />
+		<property name="compress_excludes" value="**/tests/**, */documentation/*.json" />
+
+
+		<!-- Debug
+		<echo message="Release dir: ${release_dir}" />
+		<echo message="Destination file: ${release_dir}/${compress_destination_file}.zip" />
+		<echo message="Source dir to compress: ${compress_source_dir}" />
+		<echo message="Compressed destination file: ${compress_destination_file}" />
+		<echo message="Includes: ${compress_includes}" />
+		<echo message="Excludes: ${compress_excludes}" />
+		-->
+
+		<zip basedir="${compress_source_dir}"
+				 destfile="${release_dir}/${compress_destination_file}.zip"
+				 includes="${compress_includes}"
+				 excludes="${compress_excludes}"
+				 whenempty="skip" />
+	</target>
+
+	<!-- Remove all sections of code related to premium features -->
+	<target name="remove-premium-features" description="Remove code related to premium features">
+		<replaceregexp match="\/\/\s*?\{.*?Premium\-Feature\-Start.*?\}(.*?)\/\/.*?\{\s*?Premium\-Feature\-End.*?\}"
+									 replace="// Premium feature removed" flags="gis">
+	    <fileset dir="${basedir}/src" includes="**/*.php,**/*.js,**/*.css"/>
+		</replaceregexp>
+	</target>
+
+	<!-- Builds and packages the free version of the plugin -->
+	<target name="prepare-free-release" depends="remove-premium-features,composer-prepare-release" description="Produce a release package for the free version of the plugin">
+		<tempfile property="release_temp_dir" suffix=".tmp" deleteonexit="false" />
+		<property name="plugin_dir" value="${basedir}" />
+		<property name="plugin_name" value="${ant.project.name}" />
+
+		<!-- Retrieve the name to give to the compressed file (with "free" suffix, to distinguish it from the premium version). If not specified, use Plugin Name -->
+		<condition property="compress_destination_file" value="${package_file_name}-free" else="${plugin_name}-free">
+			<isset property="package_file_name"/>
+		</condition>
+
+		<copy todir="${release_temp_dir}/${plugin_name}">
+			<fileset dir="${plugin_dir}" />
+		</copy>
+
+		<!-- Compress files into a release package -->
+		<property name="compress_source_dir" value="${release_temp_dir}" />
+		<property name="compress_includes" value="${plugin_name}/*.php, ${plugin_name}/*.md, , ${plugin_name}/wpml-config.xml, ${plugin_name}/*.txt, ${plugin_name}/src/**, ${plugin_name}/documentation/**, ${plugin_name}/languages/**," />
 		<property name="compress_excludes" value="**/tests/**, */documentation/*.json" />
 
 
