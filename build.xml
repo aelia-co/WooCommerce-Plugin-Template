@@ -220,7 +220,7 @@
 	<!-- Remove all "Premium feature" tags from the code -->
 	<target name="remove-premium-features-tags" description="Remove code related to premium features">
 		<replaceregexp match="\/\/\s*?\{.*?Premium\-Feature\-Start.*?\}|\/\/.*?\{\s*?Premium\-Feature\-End.*?\}"
-									 replace="// Premium feature removed" flags="gi">
+									 replace="" flags="gi">
 	    <fileset dir="${basedir}/src" includes="**/*.php,**/*.js,**/*.css"/>
 		</replaceregexp>
 	</target>
