@@ -17,7 +17,7 @@ PLUGIN_DESCRIPTION
 
 * WordPress 3.6 or later.
 * PHP 5.3 or later.
-* WooCommerce 2.1.x/2.2.x/2.3.x.
+* WooCommerce 3.0.x or later.
 * [AFC plugin for WooCommerce](http://aelia.co/downloads/wc-aelia-foundation-classes.zip) 1.4.9.150111 or later.
 
 == Frequently Asked Questions ==
