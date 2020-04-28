@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aelia-co/WooCommerce-Plugin-Template.git"
+    "url": "https://github.com/aelia-co/woocommerce-template-plugin.git"
   },
   "homepage": "http://aelia.co",
   "author": {
@@ -18,20 +18,20 @@
     "email": "admin@aelia.co",
     "url": "http://aelia.co"
   },
-  "bugs": "https://github.com/aelia-co/WooCommerce-Plugin-Template/issues",
+  "bugs": "https://github.com/aelia-co/woocommerce-template-plugin/issues",
   "plugin_info": {
     "PLUGIN_NAME": "WooCommerce Template Plugin",
     "PLUGIN_NSPACE": "Aelia\\WC\\WC_Template_Plugin",
     "PLUGIN_CLASS_NAME": "WC_Template_Plugin",
     "PLUGIN_SLUG_VALUE": "woocommerce-template-plugin",
     "PLUGIN_MENU_SLUG": "wc_template_plugin",
-    "PLUGIN_TEXT_DOMAIN": "wc-template-plugin",
-    "PLUGIN_SUPPORT_URL": "https://github.com/aelia-co/WooCommerce-Plugin-Template/issues",
-    "PLUGIN_CONTACT_URL": "https://github.com/aelia-co/WooCommerce-Plugin-Template/issues",
-    "PLUGIN_SETTINGS_KEY": "wc-template-plugin",
-    "PLUGIN_FILTER_PREFIX": "wc_template",
-    "PLUGIN_WC_MIN_VERSION": "2.6",
-    "PLUGIN_WC_MAX_VERSION": "3.2",
+    "PLUGIN_TEXT_DOMAIN": "woocommerce-template-plugin",
+    "PLUGIN_SUPPORT_URL": "https://github.com/aelia-co/woocommerce-template-plugin/issues",
+    "PLUGIN_CONTACT_URL": "https://github.com/aelia-co/woocommerce-template-plugin/issues",
+    "PLUGIN_SETTINGS_KEY": "woocommerce-template-plugin",
+    "PLUGIN_FILTER_PREFIX": "wc_template_plugin",
+    "PLUGIN_WC_MIN_VERSION": "3.0",
+    "PLUGIN_WC_MAX_VERSION": "4.0.1",
     "PLUGIN_TAGS": ""
   }
 }
