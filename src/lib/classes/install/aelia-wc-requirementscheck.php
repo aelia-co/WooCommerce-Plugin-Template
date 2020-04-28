@@ -48,7 +48,7 @@ if(!class_exists('Aelia_WC_RequirementsChecks')) {
 		 *
 		 * @var string
 		 */
-		protected $required_php_version = '5.3';
+		protected $required_php_version = '5.4';
 
 		// @var array An array of PHP extensions required by the plugin
 		protected $required_extensions = array(
@@ -192,7 +192,13 @@ if(!class_exists('Aelia_WC_RequirementsChecks')) {
 		 */
 		protected function check_required_plugins($autoload_plugins = true) {
 			foreach($this->required_plugins as $plugin_name => $plugin_requirements) {
-				$plugin_info = $this->get_wp_plugin_info($plugin_name);
+				// Allow 3rd parties to override the details of the required plugin. This can be useful
+				// if the plugin has been renamed, or if the system where the Aelia plugins are running
+				// is already designed to ensure that all requirements are met, even though checking the
+				// plugin headers might indicate otherwise.
+				// @since 2.0.16.200428
+				// @link https://aelia.freshdesk.com/a/tickets/87135
+				$plugin_info = apply_filters('wc_aelia_afc_required_plugin_info', $this->get_wp_plugin_info($plugin_name), $plugin_name, $plugin_requirements);
 
 				$message = '';
 				if(!is_array($plugin_info)) {
@@ -302,9 +308,39 @@ if(!class_exists('Aelia_WC_RequirementsChecks')) {
 		 */
 		protected function installed_plugins() {
 			if(empty(self::$_installed_plugins)) {
+				// Ensure that the custom WC headers are added to the data returned by get_plugins()
+				// @since 2.0.16.200428
+				add_filter('extra_plugin_headers', array(__CLASS__, 'add_wc_plugin_headers'));
+
 				self::$_installed_plugins = get_plugins();
+
+				// Remove the custom filter, as it's no longer needed. The result of get_plugins()
+				// is cached by WordPress
+				// @since 2.0.16.200428
+				remove_filter('extra_plugin_headers', array(__CLASS__, 'add_wc_plugin_headers'));
 			}
 			return self::$_installed_plugins;
+		}
+
+		/**
+		 * Adds WooCommerce headers when reading plugin headers.
+		 *
+		 * WHY
+		 * This is needed to avoid issues caused by WordPress caching a list of plugin
+		 * headers that don't contain the custom WC headers. Without such custom headers,
+		 * WC is not able to detect which plugins are installed. This can cause errors in
+		 * the management of subscriptions with WooCommerce.com.
+		 *
+		 * @param array $headers Headers.
+		 * @return array
+		 * @since 2.0.16.200428
+		 * @link https://aelia.freshdesk.com/a/tickets/87180
+		 */
+		public static function add_wc_plugin_headers($headers) {
+			$headers[] = 'WC requires at least';
+			$headers[] = 'WC tested up to';
+			$headers[] = 'Woo';
+			return $headers;
 		}
 
 		/**
