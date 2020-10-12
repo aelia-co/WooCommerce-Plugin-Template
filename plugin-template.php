@@ -9,7 +9,7 @@ Author URI: PLUGIN_AUTH_URI
 Text Domain: PLUGIN_TEXT_DOMAIN
 License: PLUGIN_LICENSE
 WC requires at least: PLUGIN_WC_MIN_VERSION
-WC tested up to: PLUGIN_WC_MAX_VERSION
+WC tested up to: 4.6
 */
 
 require_once(dirname(__FILE__) . '/src/lib/classes/install/plugin-requirementscheck.php');

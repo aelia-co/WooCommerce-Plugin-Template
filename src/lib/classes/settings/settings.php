@@ -84,20 +84,5 @@ class Settings extends \Aelia\WC\Settings {
 		}
 	}
 
-	/**
-	 * Factory method.
-	 *
-	 * @param string settings_key The key used to store and retrieve the plugin settings.
-	 * @param string textdomain The text domain used for localisation.
-	 * @param string renderer The renderer to use to generate the settings page.
-	 * @return WC_Aelia_Settings.
-	 */
-	public static function factory($settings_key = self::SETTINGS_KEY,
-																 $textdomain = '') {
-		$class = get_called_class();
-		$settings_manager = new $class($settings_key, $textdomain, $renderer);
-		return $settings_manager;
-	}
-
 	/*** Validation methods ***/
 }
