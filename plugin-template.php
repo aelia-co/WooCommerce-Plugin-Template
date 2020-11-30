@@ -1,4 +1,4 @@
-<?php if(!defined('ABSPATH')) exit; // Exit if accessed directly
+<?php if(!defined('ABSPATH')) { exit; } // Exit if accessed directly
 /*
 Plugin Name: PLUGIN_NAME
 Description: PLUGIN_DESCRIPTION
@@ -9,7 +9,7 @@ Author URI: PLUGIN_AUTH_URI
 Text Domain: PLUGIN_TEXT_DOMAIN
 License: PLUGIN_LICENSE
 WC requires at least: PLUGIN_WC_MIN_VERSION
-WC tested up to: 4.7
+WC tested up to: 4.8
 */
 
 require_once(dirname(__FILE__) . '/src/lib/classes/install/plugin-requirementscheck.php');

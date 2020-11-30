@@ -31,7 +31,7 @@
     "PLUGIN_SETTINGS_KEY": "woocommerce-template-plugin",
     "PLUGIN_FILTER_PREFIX": "wc_template_plugin",
     "PLUGIN_WC_MIN_VERSION": "3.0",
-    "PLUGIN_WC_MAX_VERSION": "4.0.1",
+    "PLUGIN_WC_MAX_VERSION": "4.8",
     "PLUGIN_TAGS": ""
   }
 }

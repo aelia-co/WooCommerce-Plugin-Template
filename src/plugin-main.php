@@ -1,14 +1,10 @@
 <?php
 namespace PLUGIN_NSPACE;
-if(!defined('ABSPATH')) exit; // Exit if accessed directly
-
-//define('SCRIPT_DEBUG', 1);
-//error_reporting(E_ALL);
+if(!defined('ABSPATH')) { exit; } // Exit if accessed directly
 
 require_once('lib/classes/definitions/definitions.php');
 
 use Aelia\WC\Aelia_Plugin;
-use Aelia\WC\Aelia_SessionManager;
 use PLUGIN_NSPACE\Settings;
 use PLUGIN_NSPACE\Settings_Renderer;
 use PLUGIN_NSPACE\Messages;
@@ -30,8 +26,6 @@ class PLUGIN_CLASS_NAME extends Aelia_Plugin {
 		// Load Composer autoloader
 		require_once(__DIR__ . '/vendor/autoload.php');
 
-		$settings_key = self::$plugin_slug;
-
 		// Settings and messages classes are loaded from the same namespace as the
 		// plugin
 		$settings_page_renderer = new Settings_Renderer();
@@ -42,8 +36,7 @@ class PLUGIN_CLASS_NAME extends Aelia_Plugin {
 
 		$class = get_called_class();
 		// Replace $settings_controller with NULL if the plugin doesn't have settings
-		$plugin_instance = new $class($settings_controller, $messages_controller);
-		return $plugin_instance;
+		return new $class($settings_controller, $messages_controller);
 	}
 
 	/**

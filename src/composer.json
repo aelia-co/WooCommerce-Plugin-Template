@@ -1,8 +1,8 @@
 {
 	"require-dev": {
-		"mockery/mockery": "*"
+		"mockery/mockery": "^1.3"
   },
 	"autoload" : {
-		"classmap": ["lib/classes/"]
+		"classmap": ["lib/"]
 	}
 }
