@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://github.com/aelia-co/woocommerce-template-plugin.git"
   },
-  "homepage": "http://aelia.co",
+  "homepage": "https://aelia.co",
   "author": {
     "name": "Aelia",
     "email": "support@aelia.co",
@@ -28,6 +28,14 @@
     "PLUGIN_TEXT_DOMAIN": "woocommerce-template-plugin",
     "PLUGIN_SUPPORT_URL": "https://github.com/aelia-co/woocommerce-template-plugin/issues",
     "PLUGIN_CONTACT_URL": "https://github.com/aelia-co/woocommerce-template-plugin/issues",
+		// REMOVE THIS COMMENT BEFORE RUNNING THE BUILD SCRIPT
+		// Make sure that the settings key is different from the plugin slug, as they serve different
+		// purposes.
+		// - The plugin slug will be used to create an option (function update_option()) with the installed version of the plugin.
+		// - The settings key will be used to create an option (same function update_option()) with the plugin settings.
+		//
+		// VERY IMPORTANT!
+		// If the two keys are the same, the settings will overwrite the version, and vice-versa!
     "PLUGIN_SETTINGS_KEY": "woocommerce-template-plugin",
     "PLUGIN_FILTER_PREFIX": "wc_template_plugin",
     "PLUGIN_WC_MIN_VERSION": "3.0",
