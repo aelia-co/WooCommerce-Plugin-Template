@@ -84,5 +84,15 @@ class Settings extends \Aelia\WC\Settings {
 		}
 	}
 
+	/**
+	 * Displays the validation errors (if any).
+	 */
+	protected function show_validation_errors() {
+		foreach($this->validation_errors as $error_key => $error_message) {
+			add_settings_error(self::SETTINGS_KEY, $error_key, $error_message);
+		}
+	}
+
 	/*** Validation methods ***/
 }
+
